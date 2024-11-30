@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Nguyen Van A",
+        "phone_number": "0987654321",
+        "accid": "ACC1001",
+        "account_number": "123456789012",
+        "cid": "CID10001"
+    },
+    {
+        "id": 2,
+        "name": "Tran Thi B",
+        "phone_number": "0976543210",
+        "accid": "ACC1002",
+        "account_number": "987654321098",
+        "cid": "CID10002"
+    },
+    {
+        "id": 3,
+        "name": "Le Van C",
+        "phone_number": "0912345678",
+        "accid": "ACC1003",
+        "account_number": "567890123456",
+        "cid": "CID10003"
+    },
+    {
+        "id": 4,
+        "name": "Pham Van D",
+        "phone_number": "0901234567",
+        "accid": "ACC1004",
+        "account_number": "654321098765",
+        "cid": "CID10004"
+    },
+    {
+        "id": 5,
+        "name": "Hoang Thi E",
+        "phone_number": "0934567890",
+        "accid": "ACC1005",
+        "account_number": "789012345678",
+        "cid": "CID10005"
+    },
+    {
+        "id": 6,
+        "name": "Dang Van F",
+        "phone_number": "0923456789",
+        "accid": "ACC1006",
+        "account_number": "890123456789",
+        "cid": "CID10006"
+    },
+    {
+        "id": 7,
+        "name": "Vu Thi G",
+        "phone_number": "0945678901",
+        "accid": "ACC1007",
+        "account_number": "901234567890",
+        "cid": "CID10007"
+    },
+    {
+        "id": 8,
+        "name": "Ngo Van H",
+        "phone_number": "0967890123",
+        "accid": "ACC1008",
+        "account_number": "012345678901",
+        "cid": "CID10008"
+    },
+    {
+        "id": 9,
+        "name": "Bui Thi I",
+        "phone_number": "0956789012",
+        "accid": "ACC1009",
+        "account_number": "123456789013",
+        "cid": "CID10009"
+    },
+    {
+        "id": 10,
+        "name": "Pham Van K",
+        "phone_number": "0990123456",
+        "accid": "ACC1010",
+        "account_number": "234567890123",
+        "cid": "CID10010"
+    }
+]
