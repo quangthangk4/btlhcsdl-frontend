@@ -1,20 +1,40 @@
-import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
+import styles from '../styles/Account.module.scss'
+import ListAccount from './componentAccount/ListAccount';
 
 const UserSearch = () => {
     const [APIData, setAPIData] = useState([]);              // Lưu dữ liệu API gốc
     const [searchInput, setSearchInput] = useState('');      // Lưu đầu vào tìm kiếm
     const [filteredResults, setFilteredResults] = useState([]); // Lưu kết quả tìm kiếm lọc
+    const [loading, setLoading] = useState(false);
+    const [customer, setCustomer] = useState({})
 
     // useEffect để gọi API khi component được mount
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
-                setAPIData(response.data);
-                setFilteredResults(response.data); // Hiển thị tất cả dữ liệu ban đầu
-            } catch (error) {
-                console.error("Lỗi khi gọi API:", error);
+            setLoading(true);
+            // Kiểm tra nếu dữ liệu đã tồn tại trong sessionStorage
+            const storedData = sessionStorage.getItem('customerData');
+            if (storedData) {
+                // Nếu có dữ liệu trong sessionStorage, dùng dữ liệu đó
+                setAPIData(JSON.parse(storedData));
+                setFilteredResults(JSON.parse(storedData)); // Hiển thị tất cả dữ liệu ban đầu
+                setLoading(false);
+            } else {
+                // Nếu chưa có dữ liệu trong sessionStorage, gọi API để lấy dữ liệu
+                try {
+                    const response = await axios.get(`http://localhost:8080/customer`);
+                    setAPIData(response.data);
+                    setFilteredResults(response.data); // Hiển thị tất cả dữ liệu ban đầu
+                    // Lưu dữ liệu vào sessionStorage để sử dụng sau này
+                    sessionStorage.setItem('customerData', JSON.stringify(response.data));
+                    setLoading(false);
+                } catch (error) {
+                    console.error("Lỗi khi gọi API:", error);
+                    setLoading(false);
+                }
             }
         };
         fetchData();
@@ -38,22 +58,69 @@ const UserSearch = () => {
         }
     };
 
+    const handleListAccout = (customer) => {
+        setCustomer(customer);
+    }
+
     return (
-        <div>
-            <h1>Danh sách người dùng</h1>
-            {/* Ô nhập tìm kiếm */}
-            <input
-                type="text"
-                placeholder="Tìm kiếm người dùng..."
-                value={searchInput}
-                onChange={(e) => searchItems(e.target.value)}  // Gọi hàm tìm kiếm khi người dùng nhập
-            />
-            {/* Hiển thị kết quả tìm kiếm */}
-            <ul>
-                {filteredResults.map((user) => (
-                    <li key={user.id}>{user.name}</li>
-                ))}
-            </ul>
+        <div className={styles.container}>
+            <h1 className={styles.title}>Danh sách người dùng</h1>
+            {loading ?
+                <div className={styles.loading}>
+                    <Spinner className={styles.loading} animation="border" variant="primary" />
+                </div>
+                :
+                <>
+                    <input
+                        className={styles.search}
+                        type="text"
+                        placeholder="Tìm kiếm customer..."
+                        value={searchInput}
+                        onChange={(e) => searchItems(e.target.value)}  // Gọi hàm tìm kiếm khi người dùng nhập
+                    />
+                    <div className={styles.table__center}>
+
+
+                        <table border="2" style={{ width: '90%', borderCollapse: 'collapse'}}>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Tên</th>
+                                    <th>Địa chỉ Nhà</th>
+                                    <th>Địa chỉ Văn Phòng</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Tài khoản</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredResults.map((customer) => (
+                                    <tr onClick={() => handleListAccout(customer)} key={customer.cid}>
+                                        <td>{customer.cid}</td>
+                                        <td>{customer.cemail}</td>
+                                        <td>{`${customer.cfirstName} ${customer.clastName}`}</td>
+                                        <td>{customer.chomeAddress}</td>
+                                        <td>{customer.cofficeAddress}</td>
+                                        <td>
+                                            {customer.cphoneNumberEntitty.map((phone, index) => (
+                                                <div key={index}>{phone.cphoneNumber}</div>
+                                            ))}
+                                        </td>
+                                        <td>
+                                            {customer.acountEntitty.map((account, index) => (
+                                                <div key={index}>{account.account_number}</div>
+                                            ))}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+            }
+            {customer && (
+                <ListAccount />
+            )}
         </div>
     );
 };

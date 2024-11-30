@@ -34,6 +34,7 @@ const LoginForm = () => {
                         <input
                             id="email"
                             type="email"
+                            name='aemail'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Nhập email"
@@ -45,6 +46,7 @@ const LoginForm = () => {
                         <input
                             id="password"
                             type="password"
+                            name='passdsfa'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Nhập mật khẩu"

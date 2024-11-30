@@ -4,10 +4,11 @@ import AddAccount from './pages/AddAccount';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Account from './pages/Account'
+import './app.scss'
 
 function App() {
   return (
-    <div>
+    <div className="marginTop-50px">
       <Router>
         <Header />
         <Routes>

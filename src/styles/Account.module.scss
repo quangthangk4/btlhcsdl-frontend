@@ -1,0 +1,55 @@
+.container {
+    padding-bottom: 500px;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    padding-top:20px;
+}
+
+.loading {
+    text-align: center;
+    position: relative;
+    top: 20vh;
+}
+
+thead {
+    th {
+        text-align: center;
+        border-bottom: 2px solid #000;
+    }
+}
+
+tbody {
+    tr {
+        cursor: pointer;
+        &:hover {
+            background-color: #ccc;
+        }
+
+        &:active {
+            opacity: 0.8;
+        }
+    }
+
+    td {
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+.search {
+    padding: 12px 20px;
+    display: block;
+    margin: 20px auto;
+    width: 350px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.table__center {
+    display: flex;
+    justify-content: center;
+}
