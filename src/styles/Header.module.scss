@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    
+}
+
+.navlink {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 24px;
+
+    &:hover{
+        background-color: #044CC8;
+    }
+}
+
+.active {
+    background-color: #044CC8;
+}
+
+.login {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 24px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
