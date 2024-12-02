@@ -66,14 +66,11 @@ const AddAccount = () => {
             linterestRate: formData.linterestRate,
             lbalanceDue: formData.lbalanceDue,
         };
-
-        console.log(postData);
         
 
         // Xử lý gửi yêu cầu POST
         try {
-            const response = await axios.post('https://example.com/api/account', postData);
-            console.log('Dữ liệu đã được gửi thành công:', response.data);
+            const response = await axios.post('http://localhost:8080/customer/account', postData);
             window.location.reload(); 
             // Xử lý thêm sau khi gửi thành công (cập nhật UI, thông báo, v.v.)
         } catch (error) {
@@ -81,6 +78,11 @@ const AddAccount = () => {
             // Xử lý lỗi (hiển thị thông báo lỗi, v.v.)
         }
     };
+
+    const handlePostData = () => {
+        alert("Thêm tài khoản thành công!");
+        window.location.reload();
+    }
 
     return (
         <div className={styles.container}>
@@ -184,7 +186,7 @@ const AddAccount = () => {
                         </div>
                     )}
 
-                    <button className={styles.submit} type="submit">Gửi</button>
+                    <button className={styles.submit} onClick={handlePostData} type="submit">Gửi</button>
                 </form>
             </div>
         </div>

@@ -17,17 +17,18 @@ const UserSearch = () => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
+            // sessionStorage.removeItem('customerData');
             const storedData = sessionStorage.getItem('customerData');
             if (storedData) {
                 setAPIData(JSON.parse(storedData));
-                setFilteredResults(JSON.parse(storedData)); 
+                setFilteredResults(JSON.parse(storedData));
                 setLoading(false);
             } else {
                 // Nếu chưa có dữ liệu trong sessionStorage, gọi API để lấy dữ liệu
                 try {
                     const response = await axios.get(`http://localhost:8080/customer`);
                     setAPIData(response.data);
-                    setFilteredResults(response.data); 
+                    setFilteredResults(response.data);
                     sessionStorage.setItem('customerData', JSON.stringify(response.data));
                     setLoading(false);
                 } catch (error) {
@@ -83,7 +84,7 @@ const UserSearch = () => {
                     />
                     <div className={styles.table__center}>
 
-                        <table border="2" style={{ width: '90%', borderCollapse: 'collapse'}}>
+                        <table border="2" style={{ width: '90%', borderCollapse: 'collapse' }}>
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -92,11 +93,11 @@ const UserSearch = () => {
                                     <th>Địa chỉ Nhà</th>
                                     <th>Địa chỉ Văn Phòng</th>
                                     <th>Số điện thoại</th>
-                                    <th>Tài khoản</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredResults.map((customer) => (
+                                {(filteredResults || []).map((customer) => (
                                     <tr onClick={() => handleListAccout(customer)} key={customer.cid}>
                                         <td>{customer.cid}</td>
                                         <td>{customer.cemail}</td>
@@ -104,15 +105,11 @@ const UserSearch = () => {
                                         <td>{customer.chomeAddress}</td>
                                         <td>{customer.cofficeAddress}</td>
                                         <td>
-                                            {customer.cphoneNumberEntitty.map((phone, index) => (
+                                            {(customer.cphoneNumberEntitty || []).map((phone, index) => (
                                                 <div key={index}>{phone.cphoneNumber}</div>
                                             ))}
                                         </td>
-                                        <td>
-                                            {customer.acountEntitty.map((account, index) => (
-                                                <div key={index}>{account.account_number}</div>
-                                            ))}
-                                        </td>
+
                                     </tr>
                                 ))}
                             </tbody>
@@ -121,7 +118,7 @@ const UserSearch = () => {
                 </>
             }
             {customer.cid && (
-                <ListAccount customer={customer} open={open} handleOpen={handleOpen}/>
+                <ListAccount customer={customer} open={open} handleOpen={handleOpen} />
             )}
         </div>
     );

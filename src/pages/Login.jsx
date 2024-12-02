@@ -1,27 +1,48 @@
 import React, { useState } from 'react';
 import styles from '../styles/Login.module.scss'
+import axios from 'axios';
 
 const LoginForm = () => {
     // State để lưu trữ giá trị email và password
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     // Hàm xử lý khi form được submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Kiểm tra các trường nhập liệu
-        if (!email || !password) {
-            setError('Vui lòng nhập email và mật khẩu.');
+        if (!username || !password) {
+            setError('Vui lòng nhập username và mật khẩu.');
             return;
         }
 
-        // Xử lý đăng nhập (thực hiện gọi API hoặc xử lý logic khác ở đây)
+        setLoading(true); // Bắt đầu loading
+        setError(''); // Xóa thông báo lỗi trước đó (nếu có)
 
+        try {
+            // Gửi yêu cầu đến API sử dụng axios
+            const response = await axios.post(`http://localhost:8080/login`, { username, password });
+            if (response.data === 'login success') {
+                // Lưu thông tin đăng nhập vào localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                // Thông báo cho người dùng đăng nhập thành công
+                alert("Đăng nhập thành công!");
+                // Chuyển hướng đến trang account
+                window.location.href = '/account';
+            } else {
+                // Xử lý trường hợp login failed (nếu server gửi message khác ngoài 'login success')
+                setError('Sai tài khoản hoặc mật khẩu, vui lòng thử lại.');
+            }
 
-        // Reset lại error nếu form hợp lệ
-        setError('');
+        } catch (err) {
+            // Xử lý lỗi từ server hoặc lỗi kết nối
+            setError(err.response?.data?.message || 'Sai Tài Khoản hoặc Mật Khẩu, vui lòng thử lại.');
+        } finally {
+            setLoading(false); // Kết thúc loading
+        };
     };
 
     return (
@@ -29,20 +50,20 @@ const LoginForm = () => {
             <div className={styles.form}>
                 <h2 className={styles.title}>Đăng nhập</h2>
                 <form className={styles.form__container} onSubmit={handleSubmit}>
-                    <label htmlFor='email'>Email:</label>
+                    <label htmlFor='username'>username:</label>
                     <input
-                        id="email"
-                        type="email"
-                        name='aemail'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Nhập email"
+                        id="username"
+                        type="text"
+                        name='username'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Nhập username"
                     />
                     <label htmlFor='password'>Password:</label>
                     <input
                         id="password"
                         type="password"
-                        name='passdsfa'
+                        name='password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Nhập mật khẩu"
@@ -50,7 +71,9 @@ const LoginForm = () => {
 
                     {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                    <button type="submit" className={styles.submit}>Đăng nhập</button>
+                    <button type="submit" className={styles.submit} disabled={loading}>
+                        {loading ? 'Đang xử lý...' : 'Đăng nhập'}
+                    </button>
                 </form>
             </div>
         </div>

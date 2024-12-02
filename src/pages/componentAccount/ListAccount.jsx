@@ -63,7 +63,7 @@ function ListAccount(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <h2 style={{ marginLeft: '24px' }}>Thông tin Khách hàng: </h2>
+                <h2 style={{ marginTop: '24px' , marginLeft: '24px' }}>Thông tin Khách hàng: </h2>
                 <div className={styles.customer__info}>
                     <Avatar
                         alt="Remy Sharp"
@@ -80,7 +80,7 @@ function ListAccount(props) {
                             <div className='col l-6'>
                                 <p className={styles.infor__paragraph}><strong>Home Address: </strong> {customer.chomeAddress}</p>
                                 <p className={styles.infor__paragraph}><strong>Office Address: </strong> {customer.cofficeAddress}</p>
-                                <p className={styles.infor__paragraph}><strong>Number Of Accounts: </strong> {customer.AcountEntitty.length}</p>
+                                <p className={styles.infor__paragraph}><strong>Number Of Accounts: </strong> {APIData.length}</p>
                             </div>
                         </div>
                         <p className={styles.cphone}><strong>Phone numbers: </strong>
@@ -126,10 +126,10 @@ function ListAccount(props) {
                         </>
                     }
                 </div>
-                <DialogActions>
-                    <Button onClick={handleClose} variant="outlined" autoFocus>Close</Button>
+                <DialogActions style={{margin: '20px 20px 20px 0'}}>
+                    <Button onClick={handleClose} variant="outlined" style={{fontSize: '1.5rem' }}>Close</Button>
                     <Link to={`/addaccount?customerId=${customer.cid}`}>
-                        <Button onClick={handleClose} variant="outlined" autoFocus>Add Account</Button>
+                        <Button onClick={handleClose} variant="outlined" autoFocus style={{fontSize: '1.5rem' }}>Add Account</Button>
                     </Link>
                 </DialogActions>
             </Dialog>
