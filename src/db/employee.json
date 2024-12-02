@@ -1,0 +1,29 @@
+{
+    "employeeId": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "employee1@example.com",
+    "dateOfBirth": "1989-12-31T17:00:00.000+00:00",
+    "phoneNumber": "101",
+    "street": "123 Main St",
+    "district": "District A",
+    "city": "City A",
+    "customers": [
+        {
+            "customerId": 1,
+            "firstName": "Alice",
+            "lastName": "Johnson",
+            "email": "customer1@example.com",
+            "homeAddress": "123 Home St",
+            "officeAddress": "100 Office St"
+        },
+        {
+            "customerId": 5,
+            "firstName": "Eve",
+            "lastName": "Davis",
+            "email": "customer5@example.com",
+            "homeAddress": "202 Home St",
+            "officeAddress": "500 Office St"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 .container {
-    padding-bottom: 500px;
+    padding-bottom: 150px;
 }
 
 .title {
@@ -11,8 +11,9 @@
 .loading {
     text-align: center;
     position: relative;
-    top: 20vh;
+    top: 35vh;
 }
+
 
 thead {
     th {
@@ -35,7 +36,8 @@ tbody {
 
     td {
         text-align: center;
-        padding: 12px 0;
+        border: none;
+        padding: 12px 8px;
         border-bottom: 1px solid #ccc;
     }
 }
@@ -52,4 +54,9 @@ tbody {
 .table__center {
     display: flex;
     justify-content: center;
+}
+
+.loading__spinner {
+    width: 4rem;
+    height: 4rem;
 }

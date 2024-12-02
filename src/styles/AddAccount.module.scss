@@ -6,6 +6,7 @@
 }
 
 .form {
+    width: 700px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow:
@@ -22,12 +23,10 @@
 }
 
 .form__container {
-    width: 400px;
     label {
         font-size: 1.8rem;
+        margin-top: 20px;
         display: block;
-        padding-bottom: 6px;
-        padding-top: 20px;
     }
     input {
         width: 100%;
@@ -39,6 +38,7 @@
 }
 
 .submit {
+    float: right;
     margin-top: 50px;
     padding: 12px 24px;
     font-size: 1.8rem;
@@ -54,4 +54,20 @@
     &:active {
         opacity: 0.7;
     }
+}
+
+.form__select {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 1.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.form__flag {
+    cursor: pointer;
+    width: 100px !important; 
+    height: 25px;
+    margin-top: 20px;
 }

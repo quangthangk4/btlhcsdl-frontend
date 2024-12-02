@@ -1,0 +1,38 @@
+.container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow:
+    inset 
+    0 0 0 2px white,
+    0.3em 0.3em 1em rgba(63, 60, 60, 0.6);
+    padding: 50px;
+    height: 100%;
+}
+
+.branch__info {
+    display: flex;
+    padding: 12px 24px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.dflex {
+    padding: 12px;
+    margin-left: 12px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.padding1224 {
+    padding: 12px 24px;
+    flex: 1;
+    align-items: center;
+}
+
+.cphone {
+    text-align: center;
+}
+
+.infor__paragraph {
+    margin-top: 10px;
+}

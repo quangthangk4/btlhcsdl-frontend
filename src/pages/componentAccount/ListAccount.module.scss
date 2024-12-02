@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    background-color: #000;
+}
+
+.dflex {
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.customer__info {
+    display: flex;
+    padding: 12px 24px;
+    justify-content: space-between;
+}
+
+.padding1224 {
+    padding: 12px 24px;
+    flex: 1;
+    align-items: center;
+}
+
+.cphone {
+    text-align: center;
+}
+
+.infor__paragraph {
+    margin-top: 10px;
+}
+
+.loading__spinner {
+    width: 4rem;
+    height: 4rem;
+    margin-top: 70px;
+}

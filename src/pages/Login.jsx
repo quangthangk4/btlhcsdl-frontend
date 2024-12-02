@@ -28,30 +28,25 @@ const LoginForm = () => {
         <div className={styles.container}>
             <div className={styles.form}>
                 <h2 className={styles.title}>Đăng nhập</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor='email'>Email:</label>
-                        <input
-                            id="email"
-                            type="email"
-                            name='aemail'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Nhập email"
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor='password'>Password:</label>
-                        <input
-                            id="password"
-                            type="password"
-                            name='passdsfa'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Nhập mật khẩu"
-                        />
-                    </div>
+                <form className={styles.form__container} onSubmit={handleSubmit}>
+                    <label htmlFor='email'>Email:</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name='aemail'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Nhập email"
+                    />
+                    <label htmlFor='password'>Password:</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name='passdsfa'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Nhập mật khẩu"
+                    />
 
                     {error && <p style={{ color: 'red' }}>{error}</p>}
 

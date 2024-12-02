@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Account from './pages/Account'
 import './app.scss'
+import Report from './pages/Report';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Account" element={ <Account/> } />
+          <Route path="/account" element={ <Account/> } />
           <Route path="/addaccount" element={ <AddAccount />} />
           <Route path="/login" element={ <Login />} />
+          <Route path="/report" element={ <Report />} />
         </Routes>
       </Router>
     </div>

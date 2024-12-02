@@ -8,27 +8,26 @@ const UserSearch = () => {
     const [APIData, setAPIData] = useState([]);              // Lưu dữ liệu API gốc
     const [searchInput, setSearchInput] = useState('');      // Lưu đầu vào tìm kiếm
     const [filteredResults, setFilteredResults] = useState([]); // Lưu kết quả tìm kiếm lọc
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [customer, setCustomer] = useState({})
+    const [open, setOpen] = useState(true);
+
 
     // useEffect để gọi API khi component được mount
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            // Kiểm tra nếu dữ liệu đã tồn tại trong sessionStorage
             const storedData = sessionStorage.getItem('customerData');
             if (storedData) {
-                // Nếu có dữ liệu trong sessionStorage, dùng dữ liệu đó
                 setAPIData(JSON.parse(storedData));
-                setFilteredResults(JSON.parse(storedData)); // Hiển thị tất cả dữ liệu ban đầu
+                setFilteredResults(JSON.parse(storedData)); 
                 setLoading(false);
             } else {
                 // Nếu chưa có dữ liệu trong sessionStorage, gọi API để lấy dữ liệu
                 try {
                     const response = await axios.get(`http://localhost:8080/customer`);
                     setAPIData(response.data);
-                    setFilteredResults(response.data); // Hiển thị tất cả dữ liệu ban đầu
-                    // Lưu dữ liệu vào sessionStorage để sử dụng sau này
+                    setFilteredResults(response.data); 
                     sessionStorage.setItem('customerData', JSON.stringify(response.data));
                     setLoading(false);
                 } catch (error) {
@@ -40,7 +39,6 @@ const UserSearch = () => {
         fetchData();
     }, []);
 
-    // Hàm xử lý tìm kiếm
     const searchItems = (searchValue) => {
         setSearchInput(searchValue);  // Cập nhật state searchInput
 
@@ -60,14 +58,19 @@ const UserSearch = () => {
 
     const handleListAccout = (customer) => {
         setCustomer(customer);
+        setOpen(true);
+    }
+
+    const handleOpen = (data) => {
+        setOpen(data);
     }
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Danh sách người dùng</h1>
+            <h2 className={styles.title}>Danh sách người dùng</h2>
             {loading ?
                 <div className={styles.loading}>
-                    <Spinner className={styles.loading} animation="border" variant="primary" />
+                    <Spinner className={styles.loading__spinner} animation="border" variant="primary" />
                 </div>
                 :
                 <>
@@ -79,7 +82,6 @@ const UserSearch = () => {
                         onChange={(e) => searchItems(e.target.value)}  // Gọi hàm tìm kiếm khi người dùng nhập
                     />
                     <div className={styles.table__center}>
-
 
                         <table border="2" style={{ width: '90%', borderCollapse: 'collapse'}}>
                             <thead>
@@ -118,8 +120,8 @@ const UserSearch = () => {
                     </div>
                 </>
             }
-            {customer && (
-                <ListAccount />
+            {customer.cid && (
+                <ListAccount customer={customer} open={open} handleOpen={handleOpen}/>
             )}
         </div>
     );
