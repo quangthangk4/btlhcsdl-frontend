@@ -16,7 +16,8 @@ function Home(props) {
         >
             <p style={{
                 position: 'absolute', top: '20vh', left: '20vh',
-                fontSize: '10rem', color: '#fff', textShadow: '2px 4px 6px rgba(0, 0, 0, 0.7)'
+                fontSize: '10rem', color: '#fff', textShadow: '2px 4px 6px rgba(0, 0, 0, 0.7)',
+                userSelect: 'none',
             }}
             >
                 Quản Lí<br />Tài Khoản
