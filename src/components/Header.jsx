@@ -24,7 +24,7 @@ function Header({ isLoggedIn }) {
             <div className={styles.header}>
                 <div>
                     <NavLink to="/" className={({ isActive }) => clsx(styles.navlink, { [styles.active]: isActive })}>Home</NavLink>
-                    <NavLink to="/account" className={({ isActive }) => clsx(styles.navlink, { [styles.active]: isActive })}>Account</NavLink>
+                    <NavLink to="/account" className={({ isActive }) => clsx(styles.navlink, { [styles.active]: isActive })}>Customer</NavLink>
                     <NavLink to="/report" className={({ isActive }) => clsx(styles.navlink, { [styles.active]: isActive })}>Report</NavLink>
                 </div>
 

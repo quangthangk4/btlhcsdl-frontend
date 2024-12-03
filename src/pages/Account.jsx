@@ -23,6 +23,8 @@ const UserSearch = () => {
                 setAPIData(JSON.parse(storedData));
                 setFilteredResults(JSON.parse(storedData));
                 setLoading(false);
+
+                console.log(APIData);
             } else {
                 // Nếu chưa có dữ liệu trong sessionStorage, gọi API để lấy dữ liệu
                 try {
